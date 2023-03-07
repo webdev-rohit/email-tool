@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Email Tool</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="container mb-5">
+            <h5>Paste your e-mail body on the left, hit the Submit button and see the magic!</h5>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form action="/" method="POST">
+                    <textarea rows="6" class="form-control" placeholder="Paste your email body here" tabindex="5" name="emailbody"></textarea>
+                    <br>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <br>
+                    <br>
+                    <small>After submitting, please wait upto 5 seconds for the results to finish processing and show up.</small> 
+                </form>
+            </div>            
+            <div class="col">
+                <h6>Email classified as -</h6>
+                {% if result =="spam" %}
+                    <div class="alert alert-danger" role="alert" name="spamnotspam">
+                        {{result}}
+                    </div>
+                {% endif %}
+                {% if result =="not spam" %}
+                    <div class="alert alert-success" role="alert" name="spamnotspam">
+                        {{result}}
+                    </div>
+                {% endif %}
+                <h6>Intents identified -</h6>
+                <div class="alert alert-secondary" role="alert" name="intents">
+                    {% for intent in intents %}
+                        {{intent}}
+                        {% if not loop.last %}
+                            ,
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <h6>Entities identified -</h6>
+                <div class="alert alert-secondary" role="alert" name="entities">
+                    {% for item in entities %}
+                        {{item.entity}}: {{item.value}}
+                        {% if not loop.last %}
+                            ,
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>        
+    </div> 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -12,3 +12,10 @@ No License. You can use it and test for yourself as much as you want.
 
 ## Note -
 This project needs to have a variables folder which contains model data, but due to large file size of it, I haven't uploaded the folder here. Kindly, prepare your own model and run the app.
+
+## Demo -
+
+
+
+https://user-images.githubusercontent.com/96412691/224550318-b15e2b7b-1746-4c61-b40c-2be266c2f712.mp4
+

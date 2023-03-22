@@ -24,15 +24,19 @@
                 </form>
             </div>            
             <div class="col">
+                <h6>Email summary -</h6>
+                <div class="alert alert-secondary" role="alert" name="summary">
+                    {{sumresult}}
+                </div>
                 <h6>Email classified as -</h6>
-                {% if result =="spam" %}
+                {% if classresult =="spam" %}
                     <div class="alert alert-danger" role="alert" name="spamnotspam">
-                        {{result}}
+                        {{classresult}}
                     </div>
                 {% endif %}
-                {% if result =="not spam" %}
+                {% if classresult =="not spam" %}
                     <div class="alert alert-success" role="alert" name="spamnotspam">
-                        {{result}}
+                        {{classresult}}
                     </div>
                 {% endif %}
                 <h6>Intents identified -</h6>

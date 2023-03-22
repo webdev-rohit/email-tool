@@ -15,7 +15,6 @@ This project needs to have a variables folder which contains model data, but due
 
 ## Demo -
 
+https://user-images.githubusercontent.com/96412691/226817110-2e223586-87eb-4567-b3b2-5235812a2d5f.mp4
 
-
-https://user-images.githubusercontent.com/96412691/224550318-b15e2b7b-1746-4c61-b40c-2be266c2f712.mp4
 

@@ -10,6 +10,22 @@ import config
 openai.api_key = config.api_key
 model =  tf.saved_model.load('C:\Learnings\BERT_Email_Spam_Classification\FinalProjectFolder')
 
+def summarize():
+    request_body = request.form['emailbody']
+    response = openai.Completion.create(
+    model="text-davinci-003",
+    prompt="Summarize this email:\n\n"+str(request_body),
+    temperature=1.0,
+    max_tokens=50,
+    top_p=0.5,
+    frequency_penalty=0.0,
+    presence_penalty=0.0
+    )   
+    finalResponse = response['choices'][0]['text']
+    print('final response: ',finalResponse)
+    print('type of final response: ',type(finalResponse))
+    return finalResponse
+
 def predict():
     emailBody = [] 
     # request_body = request.get_data()
@@ -49,9 +65,11 @@ def index():
   if request.method == 'GET':
     return render_template('index.html')
   elif request.method == 'POST':
+    sumresult  = summarize()
+    print('summarizer result: ', sumresult)
     classifierjsonObj = predict()
-    result = classifierjsonObj['result']
-    print('classifier result: ', result)
+    classresult = classifierjsonObj['result']
+    print('classifier result: ', classresult)
     intentsjsonStr = getintents()
     print('intents json Str: ',intentsjsonStr)
     print('type of intents json Str: ',type(intentsjsonStr))
@@ -62,7 +80,7 @@ def index():
         print(intents)
         entities = intentsjsonObj['entities']
         print(entities)
-        return render_template('index.html', result = result, intents = intents, entities = entities)
+        return render_template('index.html', sumresult = sumresult, classresult = classresult, intents = intents, entities = entities)
     except:
         return 'Something went wrong! There seems to be an issue with the object returned by OpenAI. Kindly, try posting another email body or try after some time.'
     
